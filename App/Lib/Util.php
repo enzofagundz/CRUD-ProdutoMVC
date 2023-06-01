@@ -21,21 +21,43 @@ class Util {
      * - Retorna um array ou uma string, dependendo da entrada
      */
 
+    // public static function sanitizar($dados) {
+    //     if (is_array($dados)) {
+    //         foreach ($dados as $chave => $valor) {
+    //             $valor = filter_var($valor, FILTER_SANITIZE_STRING); //Remove HTML TAGS
+    //             $valor = str_replace("&#x", '', $valor); //Remove início hexadecimal
+    //             $valor = stripslashes($valor); //Remove \
+    //             $dados[$chave] = trim($valor);
+    //         }
+    //     } else {
+    //         $dados = filter_var($dados, FILTER_SANITIZE_STRING);
+    //         $dados = str_replace("&#x", '', $dados); //replace o prefixo Hexadecimal com nada
+    //         $dados = stripslashes($dados);
+    //         $dados = trim($dados);
+    //     }
+    //     return $dados;
+    // }
+
     public static function sanitizar($dados) {
         if (is_array($dados)) {
             foreach ($dados as $chave => $valor) {
-                $valor = filter_var($valor, FILTER_SANITIZE_STRING); //Remove HTML TAGS
-                $valor = str_replace("&#x", '', $valor); //Remove início hexadecimal
-                $valor = stripslashes($valor); //Remove \
+                $valor = filter_var($valor, FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Remove caracteres especiais
+                $valor = str_replace("&#x", '', $valor); // Remove início hexadecimal
+                $valor = stripslashes($valor); // Remove \
                 $dados[$chave] = trim($valor);
             }
         } else {
-            $dados = filter_var($dados, FILTER_SANITIZE_STRING);
-            $dados = str_replace("&#x", '', $dados); //replace o prefixo Hexadecimal com nada
-            $dados = stripslashes($dados);
+            $dados = filter_var($dados, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $dados = str_replace("&#x", '', $dados); // Remove início hexadecimal
+            $dados = stripslashes($dados); // Remove \
             $dados = trim($dados);
         }
+
+        // echo '<pre>';
+        // var_dump($dados);
+        // echo '</pre>';
+
         return $dados;
     }
-
+    
 }

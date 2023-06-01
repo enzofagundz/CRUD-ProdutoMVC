@@ -27,7 +27,7 @@ class App {
         /*
          * Constantes da Aplicação
          */
-        define('APP_HOST', $_SERVER['HTTP_HOST'] . "/crudproduto-mvc");
+        define('APP_HOST', $_SERVER['HTTP_HOST'] . "/CRUD-ProdutoMVC");
         define('PATH', realpath('./'));
         define('TITLE', "CRUD-Produto em PHP usando MVC e OO");
         define('DB_HOST', "localhost");
@@ -58,7 +58,9 @@ class App {
 
 
         $this->controllerFile = $this->controllerName . '.php';
-        $this->action = preg_replace('/[^a-zA-Z]/i', '', $this->action);
+        if ($this->action !== null) {
+            $this->action = preg_replace('/[^a-zA-Z]/i', '', $this->action);
+        }
 
         if (!$this->controller) {   //Caso não digitou o Controller - chama a Home
             $this->controller = new HomeController($this);
@@ -82,7 +84,7 @@ class App {
         }
 
         //Chama o método relacionado com a Action
-        if (method_exists($objetoController, $this->action)) {
+        if ($this->action !== null && method_exists($objetoController, $this->action)) {
             $objetoController->{$this->action}($this->params);
             return;
         } else if (!$this->action && method_exists($objetoController, 'index')) {
@@ -99,7 +101,7 @@ class App {
     /* url()
      *  Preenche os atributos controller e action com valores vindos da URL amigável
      *    Caso a URL apresente também parâmetros, coloca-os no atributo params.
-     * Exemplo de URL http://localhost/crudproduto-mvc/produto/editar/15
+     * Exemplo de URL http://localhost/CRUD-ProdutoMVC/produto/editar/15
      *   Controller: Produto
      *   Método/action: editar
      *   params: 15 -> Código do produto a ser editado 

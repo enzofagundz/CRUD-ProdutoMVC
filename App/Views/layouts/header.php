@@ -34,7 +34,7 @@
                             <a class="nav-link" href="http://<?php echo APP_HOST."/produto/cadastrar"; ?>">Cadastrar Produtos</a>
                         </li>
                         <li class="nav-item <?php if ($viewVar['nameController'] == "UsuarioController") { ?> active <?php } ?>">
-                            <a class="nav-link" href="#">Usuários</a>
+                            <a class="nav-link" href="http://<?php echo APP_HOST."/usuario/listar" ?>">Usuários</a>
                         </li>
                     </ul>
 

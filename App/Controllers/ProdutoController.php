@@ -7,9 +7,11 @@ use App\Models\DAO\ProdutoDAO;
 use App\Models\Entidades\Produto;
 use App\Lib\Util;
 
-class ProdutoController extends Controller {
+class ProdutoController extends Controller
+{
 
-    public function listar() {
+    public function listar()
+    {
         $produtoDAO = new ProdutoDAO();  //Conecta ao Banco
 
         self::setViewParam('listaProdutos', $produtoDAO->listar()); //busca os dados
@@ -19,7 +21,8 @@ class ProdutoController extends Controller {
         Sessao::limpaMensagem();
     }
 
-    public function editar($params) {
+    public function editar($params)
+    {
         $id = $params[0]; //Pega o id do produto a ser editado
 
         $produtoDAO = new ProdutoDAO();
@@ -39,7 +42,8 @@ class ProdutoController extends Controller {
         Sessao::limpaMensagem();
     }
 
-    public function salvar($param) {
+    public function salvar($param)
+    {
         $cmd = $param[0]; //Pega o comando: editar ou novo
         //Sanitização dos dados do Formulário
         $dadosform = Util::sanitizar($_POST);
@@ -86,7 +90,8 @@ class ProdutoController extends Controller {
         $this->redirect('/produto/listar');
     }
 
-    public function excluirConfirma($param) { //Confirma Exclusão do produto
+    public function excluirConfirma($param) //Confirma Exclusão do produto
+    {
         $dados = Util::sanitizar($param); //Pega o id do produto a ser excluído e sanitiza
 
         $objproduto = new Produto();
@@ -97,16 +102,19 @@ class ProdutoController extends Controller {
             die("Id do produto não é numérico!");
         }
 
+
         self::setViewParam('produto', $objproduto);
         $this->render('/produto/excluirConfirma'); //Retorna ao Formulário
     }
 
-    public function excluir($param) {
+    public function excluir($param)
+    {
         $objproduto = new Produto();
         //Pega o id do produto a ser excluído
         $objproduto->setId(Util::sanitizar($_POST['id']));
 
         $produtoDAO = new ProdutoDAO();
+
 
         if (!$produtoDAO->excluir($objproduto)) {
             Sessao::gravaMensagem('<div class="alert alert-danger" role="alert">Produto Não Encontrado.</div>');
@@ -116,10 +124,11 @@ class ProdutoController extends Controller {
         $this->redirect('/produto/listar');
     }
 
-    public function cadastrar() {
+
+    public function cadastrar()
+    {
         $this->render('/produto/cadastrar');
         Sessao::limpaMensagem();
         Sessao::limpaErro();
     }
-
 }

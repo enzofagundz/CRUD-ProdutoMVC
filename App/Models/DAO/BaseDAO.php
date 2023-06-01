@@ -28,7 +28,7 @@ abstract class BaseDAO
         if(!empty($table) && !empty($cols) && !empty($values))
         {
             $parametros    = $cols;
-            $colunas       = str_replace(":", "", $cols);
+            $colunas       = str_replace(":", "", $cols); //Aqui estamos adicionando os ":" para cada coluna para usar no bindParam
             
             //             $table   $colunas             $cols
             //INSERT INTO usuario (nome,email) VALUES (:nome,:email);
