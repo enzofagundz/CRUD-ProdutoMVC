@@ -27,6 +27,7 @@ class App {
         /*
          * Constantes da Aplicação
          */
+        
         define('APP_HOST', $_SERVER['HTTP_HOST'] . "/CRUD-ProdutoMVC");
         define('PATH', realpath('./'));
         define('TITLE', "CRUD-Produto em PHP usando MVC e OO");
@@ -153,5 +154,4 @@ class App {
         }
         return null;
     }
-
 }

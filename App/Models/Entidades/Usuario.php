@@ -50,15 +50,25 @@ class Usuario {
     }
 
     public function setUsuario($dados) {
-        
-        $this->setLogin($dados['login']);
-        $this->setNome($dados['nome']);
-        $this->setSenha($dados['senha']);
-        $this->setEmail($dados['email']);
-        $this->setPermissao($dados['permissao']);
-
-        // echo '<pre>';
-        // var_dump($dados);
-        // echo '</pre>';
+        if (isset($dados['login'])) {
+            $this->setLogin($dados['login']);
+        }
+    
+        if (isset($dados['nome'])) {
+            $this->setNome($dados['nome']);
+        }
+    
+        if (isset($dados['senha'])) {
+            $this->setSenha($dados['senha']);
+        }
+    
+        if (isset($dados['email'])) {
+            $this->setEmail($dados['email']);
+        }
+    
+        if (isset($dados['permissao'])) {
+            $this->setPermissao($dados['permissao']);
+        }
     }
+    
 }

@@ -30,7 +30,6 @@
                     <div class="form-group">
                         <label for="permissao">Permissão</label>
                         <select class="form-control" name="permissao" required>
-                            <option>Selecione uma opção</option>
                             <option <?php if ($viewVar['usuario']->getPermissao() == 'Admin') echo 'selected'; ?>>Admin</option>
                             <option <?php if ($viewVar['usuario']->getPermissao() == 'Normal') echo 'selected'; ?>>Normal</option>
                             <option <?php if ($viewVar['usuario']->getPermissao() == 'Leitura') echo 'selected'; ?>>Leitura</option>
@@ -44,4 +43,5 @@
             <div class=" col-md-3"></div>
         </div>
     </div>
+
 </main>

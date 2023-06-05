@@ -1,6 +1,14 @@
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="mt-5">Manutenção de Usuários do Sistema</h1>
+        <div class="row align-items-center mt-5 mb-3 justify-content-between">
+            <div>
+                <h1>Manutenção de Usuários do Sistema</h1>
+            </div>
+            <div>
+                <!-- Button trigger modal Cadastro Novo Usuário-->
+                <a type="button" class="btn btn-outline-primary btn-sm mb-2 mt-2" href="http://<?php echo APP_HOST."/usuario/cadastrar"; ?>">Novo Usuário</a>
+            </div>
+        </div>
 
         <?php
         //Mensagens de Erro ou Sucesso na execução das funções

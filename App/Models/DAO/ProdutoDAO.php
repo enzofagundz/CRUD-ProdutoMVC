@@ -77,7 +77,7 @@ class ProdutoDAO extends BaseDAO {
             $id = $produto->getId();
 
             return $this->delete('produto', "id = $id");
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             throw new \Exception("Erro ao deletar", 500);
         }
