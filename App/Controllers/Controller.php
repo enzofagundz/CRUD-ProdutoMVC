@@ -19,8 +19,6 @@ abstract class Controller
 {
     protected $app;  //Visível somente nesta classe e nas classes Filhas
     private $viewVar; //Visível somente nesta classe
-
-
     
     /*
      * Coloca no vetor Associativo $viewVar dois elementos:

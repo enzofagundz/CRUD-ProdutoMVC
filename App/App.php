@@ -15,7 +15,8 @@ namespace App;
 use App\Controllers\HomeController;
 use Exception;
 
-class App {
+class App
+{
 
     private $controller;
     private $controllerFile;
@@ -23,11 +24,12 @@ class App {
     private $params;
     public $controllerName;
 
-    public function __construct() {
+    public function __construct()
+    {
         /*
          * Constantes da Aplicação
          */
-        
+
         define('APP_HOST', $_SERVER['HTTP_HOST'] . "/CRUD-ProdutoMVC");
         define('PATH', realpath('./'));
         define('TITLE', "CRUD-Produto em PHP usando MVC e OO");
@@ -48,15 +50,22 @@ class App {
      *   chama o HomeController e o método index()
      */
 
-    public function run() {
+    public function run()
+    {
+        //Verifica se o usuário está logado
+
+        if($_SESSION['logado'] == false){
+            header('Location: http://localhost/CRUD-ProdutoMVC/login.php');
+        }
+
         if ($this->controller) {
             $this->controllerName = ucwords($this->controller) . 'Controller';
             //Retira espaços, caracteres especiais,dígitos Deixa somente letras Maiúsc. e Minúsc.
             $this->controllerName = preg_replace('/[^a-zA-Z]/i', '', $this->controllerName);
         } else {
-            $this->controllerName = "HomeController";  //Caso não digitou nada chama a Home
+            $this->controllerName = "HomeController";
+            // $this->controllerName = "HomeController";  //Caso não digitou nada chama a Home
         }
-
 
         $this->controllerFile = $this->controllerName . '.php';
         if ($this->action !== null) {
@@ -67,7 +76,6 @@ class App {
             $this->controller = new HomeController($this);
             $this->controller->index();
         }
-
 
         //Se a URL amigável contém o Controller e o Action, então carrega-os a partir daqui
         //Verifica se o arquivo da classe do Controller existe
@@ -108,7 +116,8 @@ class App {
      *   params: 15 -> Código do produto a ser editado 
      */
 
-    public function url() {
+    public function url()
+    {
 
 
         if (isset($_GET['url'])) {
@@ -131,15 +140,18 @@ class App {
         }
     }
 
-    public function getController() {
+    public function getController()
+    {
         return $this->controller;
     }
 
-    public function getAction() {
+    public function getAction()
+    {
         return $this->action;
     }
 
-    public function getControllerName() {
+    public function getControllerName()
+    {
         return $this->controllerName;
     }
 
@@ -148,7 +160,8 @@ class App {
      * este item do array. Caso contrario, retorna null
      */
 
-    private function verificaArray($array, $key) {
+    private function verificaArray($array, $key)
+    {
         if (isset($array[$key]) && !empty($array[$key])) {
             return $array[$key];
         }

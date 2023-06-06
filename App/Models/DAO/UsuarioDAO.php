@@ -27,7 +27,6 @@ class UsuarioDAO extends BaseDAO
 
             return $resultado->fetchAll(\PDO::FETCH_CLASS, Usuario::class); //Retorna um array com todos os resultados da query de select em forma de objeto da classe Usuario
         }
-
     }
 
     public function salvar(Usuario $usuario)

@@ -72,4 +72,14 @@ class Sessao
     {
         unset($_SESSION['erro']);
     }
+
+    public static function gravaLogin($usuario, $senha, $permissao)
+    {
+        $_SESSION['login'] = $usuario;
+        $_SESSION['senha'] = $senha;
+        $_SESSION['permissao'] = $permissao;
+        $_SESSION['logado'] = true;
+    }
+
+
 }
