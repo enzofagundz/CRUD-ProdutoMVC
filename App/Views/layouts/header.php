@@ -34,7 +34,15 @@
                             <a class="nav-link" href="http://<?php echo APP_HOST."/produto/cadastrar"; ?>">Cadastrar Produtos</a>
                         </li>
                         <li class="nav-item <?php if ($viewVar['nameController'] == "UsuarioController") { ?> active <?php } ?>">
-                            <a class="nav-link" href="http://<?php echo APP_HOST."/usuario/listar" ?>">Usuários</a>
+                            <a class="nav-link" href="
+                                <?php
+                                    if (self::verificaPermissao() != 1) {
+                                        echo "http://".APP_HOST."/home/negado";
+                                    } else {
+                                        echo "http://".APP_HOST."/usuario/listar";        
+                                    }                           
+                                ?>
+                            ">Usuários</a>
                         </li>
                     </ul>
 
@@ -42,12 +50,12 @@
                     <ul class="navbar-nav" style="margin-right: 0px">
                         <li class="nav-item dropdown" style="margin-right: 0px">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                                <i class="fas fa-user"> </i> &nbsp;<span class="d-sm-inline">Username</span>
+                                <i class="fas fa-user"> </i> &nbsp;<span class="d-sm-inline"><?php echo $_SESSION['login']; ?></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" >
                                 <a class="dropdown-item" href="#">Perfil</a>
                                 <a class="dropdown-item" href="#">Trocar Senha</a>
-                                <a class="dropdown-item" href="#">Sair</a>
+                                <a class="dropdown-item" href="<?php echo 'http://' . APP_HOST . '/home/logout/'; ?>">Sair</a>
                             </div>
                         </li>
                     </ul>   

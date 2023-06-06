@@ -18,19 +18,7 @@
 </head>
 
 <body class="text-center">
-
-
     <form class="form-login" action="home/validar" method="post" id="formLogin">
-        <?php
-
-        if (isset($_SESSION["erroLogin"])) {
-            echo "<div class='alert alert-danger' role='alert'>";
-            echo $_SESSION["erroLogin"];
-            echo "</div>";
-            unset($_SESSION["erroLogin"]);
-        }
-
-        ?>
         <img src="public/images/CrudLogo.png" style="width:134px;height:86px;" alt="CRUD_logo">
 
         <div class="form-row align-items-center" style="margin-right: 8px;">

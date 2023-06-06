@@ -81,5 +81,16 @@ class Sessao
         $_SESSION['logado'] = true;
     }
 
+    public static function limpaLogin()
+    {
+        unset($_SESSION['login']);
+        unset($_SESSION['senha']);
+        unset($_SESSION['permissao']);
+        unset($_SESSION['logado']);
+    }
 
+    public static function retornaPermissao()
+    {
+        return isset($_SESSION['permissao']) ? $_SESSION['permissao'] : "";
+    }
 }

@@ -77,4 +77,16 @@ abstract class Controller
             $this->viewVar[$varName] = $varValue;
         }
     }
+
+    public function verificaPermissao() {
+        $permissao = Sessao::retornaPermissao();
+
+        if ($permissao == 'Admin') {
+            return 1;
+        } elseif ($permissao == 'Normal') {
+            return 2;
+        } else {
+            return 0;
+        }
+    }
 }

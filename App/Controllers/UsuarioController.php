@@ -23,6 +23,11 @@ class UsuarioController extends Controller
 
     public function editar($param)
     {
+        if (self::verificaPermissao() == 0) {
+            $this->redirect('/home/negado');
+            die();
+        }
+
         $login = $param[0];
 
         $usuarioDAO = new UsuarioDAO();
@@ -42,6 +47,11 @@ class UsuarioController extends Controller
 
     public function salvar($param)
     {
+        if (self::verificaPermissao() == 0) {
+            $this->redirect('/home/negado');
+            die();
+        }
+
         $cmd = $param[0];
 
         $dadosForm = Util::sanitizar($_POST);
@@ -85,6 +95,11 @@ class UsuarioController extends Controller
 
     public function cadastrar()
     {
+        if (self::verificaPermissao() == 0) {
+            $this->redirect('/home/negado');
+            die();
+        }
+
         $objUsuario = new Usuario();
         self::setViewParam('usuario', $objUsuario);
 
@@ -95,6 +110,11 @@ class UsuarioController extends Controller
 
     public function excluirConfirma($param) //Confirma Exclusão do Usuario
     {
+        if (self::verificaPermissao() == 0) {
+            $this->redirect('/home/negado');
+            die();
+        }
+
         $dados = Util::sanitizar($param); //Pega o id do Usuario a ser excluído e sanitiza
 
         $objUsuario = new Usuario();

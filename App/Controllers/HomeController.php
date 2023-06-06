@@ -30,6 +30,10 @@ class HomeController extends Controller #Todos os controladodres devem ser filho
     public function validar()
     {
 
+        if(isset($_SESSION['login']) && isset($_SESSION['senha']) && isset($_SESSION['permissao'])){
+            Sessao::limpaLogin();
+        }
+
         //Recebe os dados do formulário de login
 
         $dadosForm = Util::sanitizar($_POST); //Sanitiza os dados do formulário
@@ -49,20 +53,34 @@ class HomeController extends Controller #Todos os controladodres devem ser filho
 
         //Chama o método validar() da classe UsuarioDAO
 
+
         $usuarioDAO->listar($usuario->getLogin());
 
         //Verifica se o usuário existe
 
         if($usuarioDAO->listar($usuario->getLogin()) == null){
-            $this->redirect('/login');
+            Sessao::gravaErro('erroLogin', 'Usuário e/ou senha inválidos!');
+            $this->redirect('/login.php');
         } else {
             if($usuarioDAO->listar($usuario->getLogin())->getSenha() != $usuario->getSenha()){
-                $this->redirect('/login');
+                Sessao::gravaErro('erroLogin', 'Usuário e/ou senha inválidos!'); 
+                $this->redirect('/login.php');
             }
-        } 
+        }
 
-        $this->setViewParam('login', $usuario->getLogin());
         Sessao::gravaLogin($usuario->getLogin(), $usuario->getSenha(), $usuarioDAO->listar($usuario->getLogin())->getPermissao());
         $this->redirect('/home');
+    }
+
+    //Faz o logout do usuário
+
+    public function logout()
+    {
+        Sessao::limpaLogin();
+        $this->redirect('/login');
+    }
+
+    public function negado(){
+        $this->render('home/negado');
     }
 }
