@@ -36,7 +36,7 @@
             <button class="btn btn-lg btn-outline-warning btn-block btn-hover" style="margin-left:15px; margin-right: 10px;" type="submit">Entrar</button>
         </div>
         <div class="form-row align-items-center">
-            <p class="col-12 font-italic text-muted" style="margin-top:30px;">&copy; jlieira-2020</p>
+            <p class="col-12 font-italic text-muted" style="margin-top:30px;">&copy; Enzo Fagundes - 2023</p>
         </div>
 
     </form>
